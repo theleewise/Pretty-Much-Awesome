@@ -5,12 +5,20 @@ module.exports = {
     author: `@gatsbyjs`,
     siteUrl: `https://somesite.comm`,
     menuLinks: [{
-        name: 'home',
-        link: '/'
+        name: "home",
+        link: "/"
       },
       {
-        name: 'about',
-        link: '/about'
+        name: "about",
+        link: "/about"
+      },
+      {
+        name: "services",
+        link: "/services"
+      },
+      {
+        name: "contact",
+        link: "/contact"
       }
     ]
   },
@@ -48,5 +56,14 @@ module.exports = {
         path: `${__dirname}/src/images`
       }
     },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [{
+          family: `Roboto`,
+          variants: [`400`, `700`]
+        }]
+      }
+    }
   ]
 };

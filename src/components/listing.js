@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link, StaticQuery, graphql } from "gatsby"
-import { Card, CardTitle } from "./card"
-import { Row, Col } from "./flex"
-import Button from "./button"
+import { StaticQuery, graphql } from "gatsby"
+import { Row, Col } from "react-flexbox-grid"
+import Card from "./card"
 
 const LISTING_QUERY = graphql`
   query BlogPostListing {
@@ -25,21 +24,20 @@ const LISTING_QUERY = graphql`
 `
 
 const Listing = () => (
-  <Row gutters>
+  <Row>
     <StaticQuery
         query={LISTING_QUERY}
         render={({allMarkdownRemark}) => (
             allMarkdownRemark.edges.map(({node}) => (
-                <Col>
-                    <Card key={node.frontmatter.slug}>
-                        <CardTitle>
-                            <Link to={`/posts${node.frontmatter.slug}`}>
-                                {node.frontmatter.title}
-                            </Link>
-                        </CardTitle>
-                        <p>{node.frontmatter.date}</p>
+                <Col key={node.frontmatter.slug} md={4}>
+                    <Card
+                        key={node.frontmatter.slug}
+                        link={`/posts${node.frontmatter.slug}`}
+                        image={{url:`https://placeimg.com/640/480/any`,alt:``}}
+                        title={node.frontmatter.title}
+                        meta={node.frontmatter.date}
+                    >
                         <p>{node.excerpt}</p>
-                        <Link to={`/posts${node.frontmatter.slug}`} style={Button}>Read More</Link>
                     </Card>
                 </Col>
             ))

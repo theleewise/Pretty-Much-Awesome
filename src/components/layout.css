@@ -1,10 +1,28 @@
+*, *:after, *:before { box-sizing: inherit; }
 html {
+  box-sizing: border-box;
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  font-size: 62.5%;
+  height: 100%;
 }
 body {
+  background-color: #1a1a1a;
+  color: #eee;
   margin: 0;
+  min-height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1.6rem;
+  line-height: 1.2em;
+}
+
+:link,
+:visited {
+  color: #78c777;
+}
+
+img {
+  max-width: 100%;
 }

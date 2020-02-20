@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import Layout from './layout'
+import Container from './container'
+import PageTitle from './pageTitle'
 
 export default class postLayout extends Component {
     render() {
@@ -8,10 +10,12 @@ export default class postLayout extends Component {
         const { location } = this.props;
         return (
             <Layout location={location}>
-                <h1>{ markdownRemark.frontmatter.title }</h1>
-                <p>{ markdownRemark.frontmatter.subheading }</p>
-                <p>{ markdownRemark.frontmatter.date }</p>
-                <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
+                <Container>
+                    <PageTitle>{ markdownRemark.frontmatter.title }</PageTitle>
+                    <p>{ markdownRemark.frontmatter.subheading }</p>
+                    <p>{ markdownRemark.frontmatter.date }</p>
+                    <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
+                </Container>
             </Layout>
         )
     }

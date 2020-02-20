@@ -9,10 +9,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from 'styled-components'
-import Container from "./container"
 import Banner from "./banner"
 import Header from "./header"
-import Archive from "./archive"
 import Footer from "./footer"
 import 'normalize.css';
 import "./layout.css"
@@ -20,10 +18,10 @@ import "./layout.css"
 const Layout = ({ children, location  }) => {
   
   const MainLayout = styled.main`
-    margin: 1rem auto;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-gap: 40px;
+    // margin: 6rem auto;
+  `
+
+  const SiteWrapper = styled.div`
   `
 
   const data = useStaticQuery(graphql`
@@ -31,6 +29,10 @@ const Layout = ({ children, location  }) => {
       site {
         siteMetadata {
           title
+          menuLinks {
+            name
+            link
+          }
         }
       }
       file(relativePath: {   
@@ -46,19 +48,14 @@ const Layout = ({ children, location  }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+    <SiteWrapper>
+      <Header siteTitle={data.site.siteMetadata.title} menuLinks={data.site.siteMetadata.menuLinks } />
       <Banner bg={ data.file.childImageSharp.fluid } path={ location.pathname }/>
-      <Container>
-        <MainLayout>
-          <div>
-            {children}
-          </div>
-          <Archive />
-        </MainLayout>
-      </Container>
+      <MainLayout>
+          {children}
+      </MainLayout>
       <Footer />
-    </>
+    </SiteWrapper>
   )
 }
 

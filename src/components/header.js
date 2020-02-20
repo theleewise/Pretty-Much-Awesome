@@ -3,26 +3,37 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 import Container from "./container"
+import Menu from "./menu"
 
 const HeaderWrapper = styled.header`
-  background-color: #524763;
+  background-color: #111;
   margin-bottom: 0;
-  padding-bottom: 1.5rem;
-  padding-top: 1.5rem;
+  padding-bottom: 3rem;
+  padding-top: 3rem;
   color: #fff;
-  h1 {
-    margin: 0;
-  }
+  
   a {
     color: inherit;
     text-decoration: none;
   }
+
+  li {
+    margin-left: 1rem;
+  }
 `;
 
-const Header = ({ siteTitle }) => (
+
+const ContainerStyles = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center'
+}
+
+const Header = ({ siteTitle, menuLinks }) => (
   <HeaderWrapper>
-    <Container>
-      <h1><Link to="/">{siteTitle}</Link></h1>
+    <Container style={ContainerStyles}>
+      <div><Link to="/">{siteTitle}</Link></div>
+      <Menu menuLinks={menuLinks} horz></Menu>
     </Container>
   </HeaderWrapper>
 )

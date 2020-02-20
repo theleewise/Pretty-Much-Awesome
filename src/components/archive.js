@@ -1,5 +1,6 @@
-import React from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import React, { Fragment } from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import Menu from '../components/menu'
 
 const POST_ARCHIVE_QUERY = graphql`
     query BlogPostArchive {
@@ -10,8 +11,8 @@ const POST_ARCHIVE_QUERY = graphql`
             edges {
                 node {
                     frontmatter {
-                        title
-                        slug
+                        name: title
+                        link: slug
                     }
                 }
             }
@@ -20,23 +21,13 @@ const POST_ARCHIVE_QUERY = graphql`
 `
 
 const Archive = () => {
-  const data = useStaticQuery(POST_ARCHIVE_QUERY);
-
+  const { edges } = useStaticQuery(POST_ARCHIVE_QUERY).allMarkdownRemark;
+  const items = edges.map(item => { return {name: item.node.frontmatter.name, link: `/posts${item.node.frontmatter.link}`}});
   return (
-    <>
-      <aside>
+      <Fragment>
         <h3>Archive</h3>
-        <ul>
-          {data.allMarkdownRemark.edges.map(edge => (
-            <li key={edge.node.frontmatter.slug}>
-              <Link to={`/posts${edge.node.frontmatter.slug}`}>
-                {edge.node.frontmatter.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </aside>
-    </>
+        <Menu menuLinks={items} />
+      </Fragment>
   )
 }
 
