@@ -16,6 +16,14 @@ const LISTING_QUERY = graphql`
                         date(formatString: "MMMM DD, YYYY")
                         title
                         slug
+                        description
+                        featuredImage {
+                            childImageSharp {
+                                fluid(maxHeight: 200, maxWidth: 400, fit: COVER) {
+                                    ...GatsbyImageSharpFluid_tracedSVG
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -24,7 +32,7 @@ const LISTING_QUERY = graphql`
 `
 
 const Listing = () => (
-  <Row>
+  <Row center="sm">
     <StaticQuery
         query={LISTING_QUERY}
         render={({allMarkdownRemark}) => (
@@ -33,11 +41,11 @@ const Listing = () => (
                     <Card
                         key={node.frontmatter.slug}
                         link={`/posts${node.frontmatter.slug}`}
-                        image={{url:`https://placeimg.com/640/480/any`,alt:``}}
+                        image={node.frontmatter.featuredImage.childImageSharp.fluid}
                         title={node.frontmatter.title}
                         meta={node.frontmatter.date}
                     >
-                        <p>{node.excerpt}</p>
+                        <p>{node.frontmatter.description}</p>
                     </Card>
                 </Col>
             ))

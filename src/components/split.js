@@ -1,4 +1,4 @@
-import React from 'react'
+ import React from 'react'
 import PropsTypes from "prop-types"
 import styled from 'styled-components'
 import Slide from 'react-reveal/Slide';
@@ -13,8 +13,15 @@ const SplitWrapper = styled.div`
     };
     display: flex;
     flex-direction: ${props => props.flip ? 'row-reverse' : 'row'}; 
+    flex-wrap: wrap;
     
-    > * { flex: 1; }
+    > * {
+        flex: 1 0 100%;
+        
+        @media (min-width: 640px){
+            flex: 1;
+        }
+    }
 `
     
 const SplitImage = styled.div`
@@ -35,6 +42,8 @@ const SplitBody = styled.div`
     flex-direction: column;
     justify-content: center;
     position: relative;
+    padding-bottom: 6rem;
+    padding-top: 6rem;
     
     p {
         font-size: 2rem;
@@ -42,8 +51,10 @@ const SplitBody = styled.div`
     }
 
     > * {
-        margin-${props => props.flip ? 'right' : 'left'}: 0;
-        padding-${props => props.flip ? 'right' : 'left'}: 60px;
+        @media(min-width: 640px) {
+            margin-${props => props.flip ? 'right' : 'left'}: 0;
+            padding-${props => props.flip ? 'right' : 'left'}: 60px;
+        }
     }
 `
 

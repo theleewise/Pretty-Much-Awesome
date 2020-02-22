@@ -5,15 +5,17 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
+import React, { Fragment } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from 'styled-components'
+import Helmet from "react-helmet"
 import Banner from "./banner"
 import Header from "./header"
 import Footer from "./footer"
 import 'normalize.css';
 import "./layout.css"
+import favicon from '../images/favicon.ico'
 
 const Layout = ({ children, location  }) => {
   
@@ -48,6 +50,10 @@ const Layout = ({ children, location  }) => {
   `)
 
   return (
+    <Fragment>
+    <Helmet>
+      <link rel="icon" href={favicon} />
+    </Helmet >
     <SiteWrapper>
       <Header siteTitle={data.site.siteMetadata.title} menuLinks={data.site.siteMetadata.menuLinks } />
       <Banner bg={ data.file.childImageSharp.fluid } path={ location.pathname }/>
@@ -56,6 +62,7 @@ const Layout = ({ children, location  }) => {
       </MainLayout>
       <Footer />
     </SiteWrapper>
+    </Fragment>
   )
 }
 

@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "../components/layout"
 import { Row, Col } from "react-flexbox-grid"
 import Section from "../components/section"
+import Container from "../components/container"
 import SEO from "../components/seo"
 import Split from '../components/split'
 import Listing from '../components/listing'
@@ -37,7 +38,7 @@ const IndexPage = ({location}) => (
     <Section>
       <Row around="xs">
         {features.map(({title,icon,body,link}, i) => (
-        <Col sm={3} key={`feature-col-${i}`}>
+        <Col sm={6} md={4} lg={3} key={`feature-col-${i}`}>
             <Fade bottom delay={i*300}>
               <Feature>
                 <img src={icon} alt="" />
@@ -55,8 +56,8 @@ const IndexPage = ({location}) => (
       <h2>Ullamco nostrud laboris tempor est.</h2>
       <p>Fugiat est aute aliquip occaecat cupidatat. Consectetur quis et eu minim eiusmod ullamco occaecat aliqua fugiat in nisi. Excepteur ullamco labore ad nulla incididunt id elit officia sit tempor laborum cillum do. Irure aute eu labore quis id quis consequat labore quis ad.</p>
       <p>
-        <Button to={'/'} style={Button} primary>Lorem Ipsum</Button>
-        <Button to={'/'} style={Button}>Lorem Ipsum</Button>
+        <Button to={'/'} primary>Lorem Ipsum</Button>
+        <Button to={'/'}>Lorem Ipsum</Button>
       </p>
     </Split>
 
@@ -64,13 +65,20 @@ const IndexPage = ({location}) => (
       <h2>Qui sunt ut sunt ad dolor qui labore.</h2>
       <p>Ut dolor ut et cupidatat. Excepteur voluptate tempor tempor est. Laboris consectetur adipisicing incididunt commodo minim ipsum tempor.</p>
       <p>
-        <Button to={'/'} style={Button} primary>Lorem Ipsum</Button>
-        <Button to={'/'} style={Button}>Lorem Ipsum</Button>
+        <Button to={'/'} primary>Lorem Ipsum</Button>
+        <Button to={'/'}>Lorem Ipsum</Button>
       </p>
     </Split>
 
     <Section title={'Latest Posts'}>
       <Listing />
+    </Section>
+
+    <Section title={'Hey Hey'} fill center>
+      <Container half>
+        <p>Est elit quis ullamco enim nostrud deserunt anim culpa. Aute qui commodo exercitation proident voluptate occaecat irure laboris incididunt fugiat elit minim. Cupidatat duis anim duis ut amet Lorem ad veniam do est.</p>
+        <p><Button to={'/'} primary size={'lg'}>Hey</Button></p>
+      </Container>
     </Section>
 
   </Layout>

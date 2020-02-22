@@ -6,18 +6,29 @@ const VideoWrapper = styled.div `
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
-    padding-top: 56%;
+    max-height: 70rem;
     position: relative;
+    overflow: hidden;
     text-align: center;
     text-transform: uppercase;
+    
+    &:before {
+        content: '';
+        display: block;
+        padding-top: 56%;
+    }
 
-    iframe {
-        border: none;
-        height: 100%;
-        left: 0;
+    video {
+        sdisplay: block;
         position: absolute;
-        top: 0;
-        width: 100%;
+        z-index: 0;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        min-width: 100%;
+        min-height: 100%;
+        width: auto !important;
+        height: auto !important;
     }
 `
 
@@ -62,7 +73,9 @@ const BannerVideo = (props) => {
 
     return (
         <VideoWrapper>
-            <iframe src={ props.src } title="Banner Video"></iframe>
+            <video muted loop autoPlay>
+                <source src={props.src} type="video/mp4" />
+            </video>
             <Content>
                 <PreText>{ props.pretext }</PreText>
                 <BannerTitle><span>{ otherWords }</span>

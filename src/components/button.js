@@ -17,10 +17,12 @@ const StyledLink = styled(props => <Link {...props} />)`
 
     &:first-child { margin-left: 0; }
     &:last-child { margin-right: 0; }
+
+    ${props => props.size === 'lg' ? 'font-size: 1.5em;' : ''}
 `;
 
-const Button = (props) => (
-    <StyledLink to={props.to} primary={props.primary}>{props.children}</StyledLink>
+const Button = ({to, primary, size, children}) => (
+    <StyledLink to={to} primary={primary} size={size}>{children}</StyledLink>
 )
 
 Button.propTypes = {

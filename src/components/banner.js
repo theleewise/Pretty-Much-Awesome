@@ -4,6 +4,7 @@ import Img from 'gatsby-image'
 // import { HeroVideo } from "react-hero-video"
 import  { useSpring, animated } from 'react-spring'
 import BannerVideo from '../components/bannerVideo'
+import HomeVideo from "../assets/home-video.mp4"
 
 
 const Banner = (props) => {
@@ -12,7 +13,7 @@ const Banner = (props) => {
         to: { height: props.path === '/' ? 400 : 200 }
     })
     const video =
-        <BannerVideo pretext={"We Create More Than Websites"} title={"We Create Solutions"} src={"https://www.youtube.com/embed/W0LHTWG-UmQ?autoplay=1&amp;loop=1&amp;playlist=W0LHTWG-UmQ"}></BannerVideo>
+        <BannerVideo pretext={"We Create More Than Websites"} title={"We Create Solutions"} src={HomeVideo}></BannerVideo>
     ;
     const image =
         <animated.div style={{ overflow: 'hidden', ...animationStyles }}>

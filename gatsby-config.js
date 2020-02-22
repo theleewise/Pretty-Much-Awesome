@@ -2,9 +2,10 @@ module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://somesite.comm`,
-    menuLinks: [{
+    author: `@theleewise`,
+    siteUrl: `https://pretty-much-awesome.comm`,
+    menuLinks: [
+      {
         name: "home",
         link: "/"
       },
@@ -13,8 +14,8 @@ module.exports = {
         link: "/about"
       },
       {
-        name: "services",
-        link: "/services"
+        name: "work",
+        link: "/work"
       },
       {
         name: "contact",
@@ -59,10 +60,18 @@ module.exports = {
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
-        fonts: [{
-          family: `Roboto`,
-          variants: [`400`, `700`]
-        }]
+        fonts: [
+          {
+            family: `Roboto`,
+            variants: [`400`, `700`]
+          }
+        ]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-123966496-2123966496-2"
       }
     }
   ]

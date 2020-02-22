@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import Img from 'gatsby-image'
 import PropsTypes from "prop-types"
 import styled from "styled-components"
 import Button from "./button"
@@ -8,8 +9,10 @@ const CardWrapper = styled.article `
     background-color: #2a2a2a;
     box-shadow: 0px 3px 10px rgba(0,0,0, 0.25);
     border-radius: 4px;
+    height: 100%;
     margin-bottom: 1rem;
     overflow: hidden;
+    text-align: left;
 `
 
 const CardBody = styled.div `
@@ -60,7 +63,9 @@ const Card = (props) => (
     <CardWrapper>
         { props.image && 
             <CardImage>
-                <img src={props.image.url} alt={props.image.alt} />
+                <Link to={props.link}>
+                    <Img fluid={props.image} />
+                </Link>
             </CardImage>
         }
         <CardBody>
@@ -81,6 +86,7 @@ const Card = (props) => (
 )
 
 Card.propTypes = {
+    title: PropsTypes.string,
     image: PropsTypes.shape({
         url: PropsTypes.string.isRequired,
         alt: PropsTypes.string.isRequired,
@@ -91,7 +97,7 @@ Card.propTypes = {
 }
 
 Card.defaultProps = {
-  linkText: `Read More`,
+  linkText: `Read More` ,
 }
 
 export default Card
